@@ -1,0 +1,412 @@
+:root {
+    --navy:        #1F2D50;
+    --navy-light:  #34467A;
+    --navy-soft:   #4A5B8C;
+    --gold:        #D9A441;
+    --gold-dark:   #B8842E;
+    --mint:        #4F9E88;
+    --mint-dark:   #3D7E6B;
+    --rose:        #C1495B;
+    --rose-dark:   #A23548;
+    --paper:       #F3F4F7;
+    --paper-line:  #E3E6ED;
+    --ink:         #1F2530;
+    --ink-soft:    #5B6373;
+    --font-display: "Fraunces", Georgia, serif;
+    --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+    --shadow-sm: 0 1px 2px rgba(31, 45, 80, 0.06), 0 1px 1px rgba(31, 45, 80, 0.04);
+    --shadow-md: 0 6px 16px rgba(31, 45, 80, 0.10), 0 2px 4px rgba(31, 45, 80, 0.06);
+    --shadow-lg: 0 16px 32px rgba(31, 45, 80, 0.16), 0 4px 8px rgba(31, 45, 80, 0.08);
+    --radius: 10px;
+}
+
+* {
+    scrollbar-color: var(--navy-soft) var(--paper);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--paper);
+    background-image:
+        linear-gradient(var(--paper-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
+    background-size: 28px 28px;
+    background-attachment: fixed;
+    font-family: var(--font-body);
+    color: var(--ink);
+}
+
+h1, h2, h3, h4, .display-6 {
+    font-family: var(--font-display);
+    color: var(--navy);
+    letter-spacing: -0.01em;
+}
+/* --------------------------------------------------------------------
+   Navbar
+   -------------------------------------------------------------------- */
+.site-nav {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    box-shadow: var(--shadow-md);
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.brand-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: var(--shadow-sm);
+    transform: rotate(-4deg);
+    transition: transform 0.25s ease;
+}
+
+.navbar-brand:hover .brand-mark {
+    transform: rotate(0deg) scale(1.06);
+}
+
+.brand-text {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: #fff;
+    line-height: 1.1;
+}
+
+.brand-text-accent {
+    display: block;
+    font-size: 0.68rem;
+    font-family: var(--font-mono);
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+.site-nav .nav-link {
+    position: relative;
+    color: rgba(255, 255, 255, 0.82);
+    font-weight: 500;
+    margin: 0 0.15rem;
+    padding: 0.4rem 0.15rem !important;
+    transition: color 0.2s ease;
+}
+
+.site-nav .nav-item {
+    margin: 0 0.55rem;
+}
+
+.site-nav .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0%;
+    height: 2px;
+    background: var(--gold);
+    transition: width 0.25s ease;
+}
+
+.site-nav .nav-link:hover {
+    color: #fff;
+}
+
+.site-nav .nav-link:hover::after {
+    width: 100%;
+}
+
+/* --------------------------------------------------------------------
+   Alerts
+   -------------------------------------------------------------------- */
+.alert {
+    border: none;
+    border-left: 4px solid transparent;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    animation: slideIn 0.3s ease;
+}
+
+.alert-success { border-left-color: var(--mint); background: #EAF6F2; color: var(--mint-dark); }
+.alert-danger  { border-left-color: var(--rose); background: #FBEDEF; color: var(--rose-dark); }
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --------------------------------------------------------------------
+   Dashboard hero + stat cards (dog-eared "report card" motif)
+   -------------------------------------------------------------------- */
+.p-4.bg-light.rounded-3 {
+    background: linear-gradient(135deg, #fff 0%, #EFF2F8 100%) !important;
+    border: 1px solid var(--paper-line);
+    box-shadow: var(--shadow-sm);
+}
+
+.card {
+    position: relative;
+    border: 1px solid var(--paper-line);
+    border-radius: var(--radius);
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: transform 0.28s cubic-bezier(.2,.8,.2,1), box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+/* dog-eared corner fold, like a graded report card */
+.card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 22px 22px 0;
+    border-color: transparent var(--paper) transparent transparent;
+    transition: border-width 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--gold);
+}
+
+.card:hover::after {
+    border-width: 0 30px 30px 0;
+    border-color: transparent var(--gold) transparent transparent;
+}
+
+.card-body .display-6 {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    color: var(--navy-light);
+    font-variant-numeric: tabular-nums;
+}
+
+.card-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--navy);
+}
+
+/* --------------------------------------------------------------------
+   Tables — ledger book styling
+   -------------------------------------------------------------------- */
+.table-responsive {
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    background: #fff;
+    border: 1px solid var(--paper-line);
+}
+
+table {
+    margin-bottom: 0;
+}
+
+table thead.table-dark th {
+    background: var(--navy) !important;
+    color: #fff;
+    border: none;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+}
+
+table tbody tr {
+    position: relative;
+    transition: background-color 0.18s ease, box-shadow 0.18s ease;
+    border-left: 3px solid transparent;
+}
+
+table tbody tr:hover {
+    background-color: #F7F5EC !important;
+    border-left: 3px solid var(--gold);
+    box-shadow: inset 0 0 0 9999px rgba(217, 164, 65, 0.04);
+}
+
+table td:first-child {
+    font-family: var(--font-mono);
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+}
+
+table td, table th {
+    padding: 0.85rem 0.9rem;
+}
+
+/* --------------------------------------------------------------------
+   Buttons — tactile, ink-stamp feel
+   -------------------------------------------------------------------- */
+.btn {
+    border-radius: 7px;
+    font-weight: 600;
+    font-size: 0.88rem;
+    letter-spacing: 0.01em;
+    border: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.btn:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+.btn:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+}
+
+.btn-primary {
+    background: var(--navy);
+    box-shadow: var(--shadow-sm);
+}
+.btn-primary:hover {
+    background: var(--navy-light);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.btn-success {
+    background: var(--mint);
+    box-shadow: var(--shadow-sm);
+}
+.btn-success:hover {
+    background: var(--mint-dark);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.btn-warning {
+    background: var(--gold);
+    color: var(--navy);
+    box-shadow: var(--shadow-sm);
+}
+.btn-warning:hover {
+    background: var(--gold-dark);
+    color: #fff;
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background: var(--rose);
+    box-shadow: var(--shadow-sm);
+}
+.btn-danger:hover {
+    background: var(--rose-dark);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: #fff;
+    color: var(--ink-soft);
+    border: 1px solid var(--paper-line);
+}
+.btn-secondary:hover {
+    background: var(--paper);
+    color: var(--ink);
+    border-color: var(--navy-soft);
+    transform: translateY(-2px);
+}
+
+.btn-sm {
+    padding: 0.32rem 0.7rem;
+}
+
+/* --------------------------------------------------------------------
+   Forms — quiet focus glow, like pen-on-paper
+   -------------------------------------------------------------------- */
+.form-label {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--navy);
+    letter-spacing: 0.01em;
+}
+
+.form-control, .form-select {
+    border: 1.5px solid var(--paper-line);
+    border-radius: 8px;
+    padding: 0.55rem 0.8rem;
+    background-color: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(217, 164, 65, 0.22);
+}
+
+.form-control:hover, .form-select:hover {
+    border-color: var(--navy-soft);
+}
+
+form h2 {
+    position: relative;
+    padding-bottom: 0.6rem;
+    margin-bottom: 0.4rem;
+}
+
+form h2::after {
+    content: "";
+    display: block;
+    width: 46px;
+    height: 3px;
+    background: var(--gold);
+    margin-top: 0.5rem;
+    border-radius: 2px;
+}
+
+/* --------------------------------------------------------------------
+   Perforated divider — ticket-stub feel between page header & content
+   -------------------------------------------------------------------- */
+.d-flex.justify-content-between.align-items-center.mb-3 {
+    padding-bottom: 0.9rem;
+    border-bottom: 2px dashed var(--paper-line);
+    position: relative;
+}
+
+/* --------------------------------------------------------------------
+   Misc
+   -------------------------------------------------------------------- */
+::selection {
+    background: var(--gold);
+    color: var(--navy);
+}
+
+a {
+    color: var(--navy-light);
+}
+
+a:hover {
+    color: var(--gold-dark);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        transition-duration: 0.001ms !important;
+    }
+}

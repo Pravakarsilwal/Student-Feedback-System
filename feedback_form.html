@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}{{ action }} Feedback{% endblock %}
+{% block content %}
+
+<h2>{{ action }} Feedback</h2>
+
+{% set sel_student_id = feedback.student_id|string if feedback else '' %}
+{% set sel_course_id = feedback.course_id|string if feedback else '' %}
+
+<form method="POST" class="row g-3 mt-2" novalidate>
+    <div class="col-md-6">
+        <label class="form-label">Student <span class="text-danger">*</span></label>
+        <select name="student_id" class="form-select" required>
+            <option value="">-- Select Student --</option>
+            {% for s in students %}
+            <option value="{{ s.student_id }}" {% if sel_student_id == s.student_id|string %}selected{% endif %}>
+                {{ s.name }} ({{ s.email }})
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label">Course <span class="text-danger">*</span></label>
+        <select name="course_id" class="form-select" required>
+            <option value="">-- Select Course --</option>
+            {% for c in courses %}
+            <option value="{{ c.course_id }}" {% if sel_course_id == c.course_id|string %}selected{% endif %}>
+                {{ c.course_name }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="col-md-12">
+        <label class="form-label">Feedback <span class="text-danger">*</span></label>
+        <textarea name="feedback_text" class="form-control" rows="4" required>{{ feedback.feedback_text if feedback else '' }}</textarea>
+    </div>
+
+    <div class="col-12 mt-4">
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{{ url_for('list_feedback') }}" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>
+
+{% endblock %}

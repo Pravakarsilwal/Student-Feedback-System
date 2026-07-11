@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Home - Student Feedback System{% endblock %}
+{% block content %}
+
+<div class="p-4 mb-4 bg-light rounded-3 text-center">
+    <h1>Welcome to the Student Feedback System</h1>
+    <p class="lead">Manage Students, Courses and Feedback records easily.</p>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Students</h5>
+                <p class="display-6">{{ counts.students }}</p>
+                <a href="{{ url_for('list_students') }}" class="btn btn-primary">Manage Students</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Courses</h5>
+                <p class="display-6">{{ counts.courses }}</p>
+                <a href="{{ url_for('list_courses') }}" class="btn btn-primary">Manage Courses</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Feedback</h5>
+                <p class="display-6">{{ counts.feedback }}</p>
+                <a href="{{ url_for('list_feedback') }}" class="btn btn-primary">Manage Feedback</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
