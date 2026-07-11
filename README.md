@@ -16,7 +16,9 @@ webii_assignment/
 │   ├── index.html
 │   ├── students.html / student_form.html
 │   ├── courses.html   / course_form.html
-│   └── feedback.html  / feedback_form.html
+│   └── feedback.html
+|   |___ course_form.html
+|  / feedback_form.html
 └── static/css/style.css
 ```
 
